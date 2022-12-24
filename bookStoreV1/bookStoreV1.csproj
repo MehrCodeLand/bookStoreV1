@@ -18,6 +18,7 @@
 
   <ItemGroup>
     <Folder Include="Areas\Main\Controllers\" />
+    <Folder Include="Migrations\" />
     <Folder Include="wwwroot\img\" />
   </ItemGroup>
 

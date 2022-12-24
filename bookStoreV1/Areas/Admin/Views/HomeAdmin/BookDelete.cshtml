@@ -1,0 +1,25 @@
+﻿@using bookStoreV1.ViewModels
+@model AdminDeleteBookViewModel
+
+
+@{
+    ViewData["Title"] = "BookDelete";
+}
+
+<h1>BookDelete</h1>
+
+<form method="post">
+    <input asp-for="MyBookId" value="@Model.MyBookId" readonly />
+    <input asp-for="Author" value="@Model.Author" readonly />
+    <input asp-for="TitleBook" value="@Model.TitleBook" readonly />
+    <img src="./img/@Model.BookImageName" width="150px"/>
+    <button type="submit">
+        Delete
+    </button>
+    <button type="button">
+        <a asp-area="Admin" asp-controller="HomeAdmin" asp-action="BookDelete">
+            Cancel
+        </a>
+    </button>
+</form>
+

@@ -92,17 +92,6 @@ namespace bookStoreV1.Core.Repository
 
 
         #region Delete
-        public bool IsDeleteBook(int id)
-        {
-            Book book = new Book();
-            book = FindBookByMyBookId(id);
-            if (book != null)
-            {
-                return false;
-            }
-
-            return true;
-        }
         public bool DeleteBook(int bookId)
         {
             Book book = new Book();
@@ -140,6 +129,17 @@ namespace bookStoreV1.Core.Repository
                 return null;
             }
 
+        }
+        public bool IsDeleteBook(int id)
+        {
+            Book book = new Book();
+            book = FindBookByMyBookId(id);
+            if (book != null)
+            {
+                return false;
+            }
+
+            return true;
         }
 
 
