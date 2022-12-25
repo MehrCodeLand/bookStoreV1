@@ -65,8 +65,15 @@ namespace bookStoreV1.Areas.Admin.Controllers
         {
             bool result = _bookService.DeleteBook(deleteBook.MyBookId);
             ViewBag.IsDelete = result;
-            return View();
+            return RedirectToAction("IndexAdmin");
         }
+
+        [Route("BookEdit")]
+        public IActionResult BookEdit(int id)
+        {
+
+        }
+
 
         #endregion
 
