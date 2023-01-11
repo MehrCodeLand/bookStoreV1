@@ -1,0 +1,31 @@
+﻿@using bookStoreV1.ViewModels
+@model AdminEditViewModel
+
+@{
+    ViewData["Title"] = "BookEdit";
+}
+
+<h1>BookEdit</h1>
+
+
+<form method="post" enctype="multipart/form-data">
+    <div>
+        <input asp-for="TitleBook" value="@Model.TitleBook" />
+        <input asp-for="Author" value="@Model.Author" />
+        <input asp-for="Description" value="@Model.Description" />
+        <input asp-for="PubTitle" value="@Model.PubTitle" />
+        <input asp-for="Price" value="@Model.Price" />
+        <input asp-for="BookImageFile"  runat="server" />
+        <img src="./img/@Model.BookImageName" width="150px" />
+    </div>
+
+    <button type="submit">
+        Edit
+    </button>
+    <button type="button">
+        <a asp-area="Admin" asp-controller="HomeAdmin" asp-action="ShowAllBook">
+            Cancel
+        </a>
+    </button>
+</form>
+

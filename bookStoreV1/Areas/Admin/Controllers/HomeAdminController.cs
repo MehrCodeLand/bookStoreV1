@@ -68,13 +68,26 @@ namespace bookStoreV1.Areas.Admin.Controllers
             return RedirectToAction("IndexAdmin");
         }
 
+
         [Route("BookEdit")]
         public IActionResult BookEdit(int id)
         {
+            AdminEditViewModel editBook = new AdminEditViewModel();
+            editBook = _bookService.GetBookEdit(id);
+            if(editBook != null)
+            {
+                return View(editBook);
+            }
 
+            return NotFound();
         }
 
-
+        [Route("BookEdit")]
+        [HttpPost]
+        public IActionResult BookEdit(AdminEditViewModel adminEdit)
+        {
+            return View();
+        }
         #endregion
 
 

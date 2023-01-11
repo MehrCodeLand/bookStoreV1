@@ -83,13 +83,40 @@ namespace bookStoreV1.Core.Repository
         {
             return _db.Books.Any(x => x.MyBookId == myBookId);
         }
-
-
         public void Save()
         {
             _db.SaveChanges();
         }
 
+        #region MyRegion
+
+        public AdminEditViewModel GetBookEdit(int myBookId)
+        {
+            Book book = _db.Books.SingleOrDefault(u => u.MyBookId == myBookId);
+            if(book == null)
+            {
+                return null;
+            }
+
+            AdminEditViewModel viewModel = new AdminEditViewModel()
+            {
+                IsExist = book.IsExist,
+                Author = book.Author,
+                BookImageName = book.BookImage,
+                Description = book.Description,
+                TitleBook = book.Title,
+                Discount = 0,
+                IsDiscount = false,
+                Price = book.Price,
+                MyBookId = myBookId,
+                PubTitle = book.PubTitle,
+            };
+
+            return viewModel;
+
+        }
+
+        #endregion
 
         #region Delete
         public bool DeleteBook(int bookId)
@@ -141,8 +168,6 @@ namespace bookStoreV1.Core.Repository
 
             return true;
         }
-
-
 
         #endregion
     }
