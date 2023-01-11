@@ -13,6 +13,7 @@ namespace bookStoreV1.Core.Services
         AdminDeleteBookViewModel GetBookInfo(int myBookId);
         AdminAllBooks GetAllBooks(int pageId , string bookName , string author );
         AdminEditViewModel GetBookEdit(int myBookId);
+        bool UpdateBook(AdminEditViewModel adminEdit);
         void Save();
     }
 }

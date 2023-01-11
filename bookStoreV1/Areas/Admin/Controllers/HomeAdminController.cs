@@ -86,6 +86,7 @@ namespace bookStoreV1.Areas.Admin.Controllers
         [HttpPost]
         public IActionResult BookEdit(AdminEditViewModel adminEdit)
         {
+            bool result = _bookService
             return View();
         }
         #endregion

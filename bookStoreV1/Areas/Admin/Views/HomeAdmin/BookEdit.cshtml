@@ -10,6 +10,7 @@
 
 <form method="post" enctype="multipart/form-data">
     <div>
+        <input asp-for="MyBookId" value="@Model.MyBookId" readonly />
         <input asp-for="TitleBook" value="@Model.TitleBook" />
         <input asp-for="Author" value="@Model.Author" />
         <input asp-for="Description" value="@Model.Description" />

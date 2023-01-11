@@ -15,7 +15,6 @@ namespace bookStoreV1.Core.Repository
         }
         public bool CreateBooks(CreateBookViewModel book)
         {
-
             Book newBook = new Book()
             {
                 Title = book.Title,
@@ -29,8 +28,6 @@ namespace bookStoreV1.Core.Repository
                 MyBookId = CreateMyBookId.CreateId(),
                 Price = book.Price,
             };
-
-
 
             if(book.BookImageFile != null)
             {
@@ -51,8 +48,6 @@ namespace bookStoreV1.Core.Repository
             bool result = IsBookCreate(newBook.MyBookId);
             return result ;
         }
-
-
         public Book FindBookByMyBookId(int id)
         {
             return _db.Books.SingleOrDefault(u => u.MyBookId == id);
@@ -88,7 +83,7 @@ namespace bookStoreV1.Core.Repository
             _db.SaveChanges();
         }
 
-        #region MyRegion
+        #region Edit
 
         public AdminEditViewModel GetBookEdit(int myBookId)
         {
@@ -114,6 +109,47 @@ namespace bookStoreV1.Core.Repository
 
             return viewModel;
 
+        }
+        public bool UpdateBook(AdminEditViewModel adminEdit)
+        {
+            // we need the best validation
+            // V1
+
+            Book newBook = new Book()
+            {
+                MyBookId = adminEdit.MyBookId,
+                Author = adminEdit.Author,
+                BookImage = adminEdit.BookImageName,
+                Description = adminEdit.Description,
+                Discount = adminEdit.Discount,
+                Price = adminEdit.Price,
+                IsDiscount = adminEdit.IsDiscount,
+                PubTitle = adminEdit.PubTitle,
+            };
+            if (adminEdit.BookImageFile != null)
+            {
+                string path = "";
+                string newImageName = NameGenerator.GenerateUniqCode();
+
+                // for delete old image
+                string oldImageName = adminEdit.BookImageName;
+
+                adminEdit.BookImageName = newImageName + ".jpg";
+                path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/img" , adminEdit.BookImageName);
+                using(var stream = new FileStream(path, FileMode.Create))
+                {
+                    adminEdit.BookImageFile.CopyTo(stream);
+                    newBook.BookImage = adminEdit.BookImageName;
+                }
+
+                // now we need delete old image
+
+            }
+
+
+
+            _db.Books.Update(newBook);
+            return true;
         }
 
         #endregion
@@ -168,6 +204,8 @@ namespace bookStoreV1.Core.Repository
 
             return true;
         }
+
+
 
         #endregion
     }
